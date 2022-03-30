@@ -2,37 +2,37 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    nodeList: [],
-    allNodes: [],
+    selectedNodes: [],
+    nodeTypes: [],
   },
   getters: {
-    getAllNodes(state){
-      return state.allNodes;
+    getNodeTypes(state){
+      return state.nodeTypes;
     },
-    getNodeList(state){
-      return state.nodeList;
+    getSelectedNodes(state){
+      return state.selectedNodes;
     }
   },
   mutations: {
-    SET_UP_ALL_NODES(state, payload){
-      state.allNodes = payload;
+    SET_UP_NODE_TYPES(state, payload){
+      state.nodeTypes = payload;
     },
-    ADD_NODE(state, payload){
-      state.nodeList.push({order: undefined, ...payload});
+    ADD_SELECTED_NODE(state, payload){
+      state.selectedNodes.push({order: state.selectedNodes.length + 1, ...payload});
     },
-    REORDER_NODE(state, payload){
-      state.nodeList = payload;
+    REORDER_SELECTED_NODES(state, payload){
+      state.selectedNodes = payload;
     }
   },
   actions: {
-    setUpAllNodes({commit}, payload){
-      commit('SET_UP_ALL_NODES', payload);
+    setUpNodeTypes({commit}, payload){
+      commit('SET_UP_NODE_TYPES', payload);
     },
-    addNode({commit}, payload) {
-      commit('ADD_NODE', payload);
+    addSelectedNode({commit}, payload) {
+      commit('ADD_SELECTED_NODE', payload);
     },
-    reorderNode({commit}, payload){
-      commit("REORDER_NODE", payload)
+    reorderSelectedNodes({commit}, payload){
+      commit("REORDER_SELECTED_NODES", payload);
     }
   },
   modules: {

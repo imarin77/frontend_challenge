@@ -1,8 +1,8 @@
 <template>
     <div class="node">
-        <p class="text-strong fixed-height">{{ node.query.short_desc }}</p>
-        <img :src="node.query.picture" :alt="node.query.title" />
-        <p>{{ node.query.title }}</p>
+        <p class="text-strong fixed-height">{{ node.short_desc }}</p>
+        <img :src="node.picture" :alt="node.title" />
+        <p>{{ node.title }}</p>
     </div>
 </template>
 
@@ -15,9 +15,6 @@ export default {
             required: true,
         }
     },
-    mounted() {
-        console.log(this.node)
-    }
 }
 </script>
 

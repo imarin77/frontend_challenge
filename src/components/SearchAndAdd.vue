@@ -7,46 +7,41 @@
                 <cite>{{ short_desc }}</cite>
             </template>
         </v-select>
-        <!--
-            Button for adding a node inside a node list
-         -->
         <button class="btn btn-add" @click="addNodeToScreen">Add Node</button>
     </div>
 </template>
 
 <script>
 import vSelect from 'vue-select';
-import 'vue-select/dist/vue-select.css';    //several attributes from an objects can be shown in select list
+import 'vue-select/dist/vue-select.css';
 import Fuse from 'fuse.js'
 import store from "@/store";
 
 export default {
     name: 'SearchAndAdd',
-    components: {vSelect},
     data() {
         return {
-            nodeList: [],
             query: "",
         }
     },
-    //getting all nodes from the store
-    mounted() {
-        this.nodeList = store.getters.getAllNodes;
+    computed: {
+        nodeList() {
+            return store.getters.getNodeTypes;
+        }
     },
-    //fuse search is used for search inside v-select using Title or Short_desc keys. if needed, other keys can be added
     methods: {
         fuseSearch(options, query) {
             const fuse = new Fuse(this.nodeList, {
                 keys: ['title', 'short_desc']
             });
-            return (query.length ? fuse.search(query).map(({ item }) => item) : fuse.list);
+            return (query.length ? fuse.search(query).map(({item}) => item) : fuse.list);
         },
-        //method used as on-click action for the button Add node
-        addNodeToScreen() {
-            this.$emit("addNodeToDisplay", this.query)
+        async addNodeToScreen() {
+            await store.dispatch('addSelectedNode', this.query)
             this.query = "";
         }
     },
+    components: {vSelect},
 }
 </script>
 
@@ -75,9 +70,10 @@ export default {
             margin-bottom: 20px;
         }
 
-        .vs__dropdown-menu{
+        .vs__dropdown-menu {
             color: black;
-            .vs__dropdown-option{
+
+            .vs__dropdown-option {
                 color: black
             }
         }

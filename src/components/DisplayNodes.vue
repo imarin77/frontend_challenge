@@ -17,27 +17,24 @@
 </template>
 
 <script>
+import draggable from "vuedraggable";
 import SingleNode from "@/components/SingleNode";
-
-//library used for drag-and-drop feature. It has built-in ordering tahn can be customised
-import draggable from "vuedraggable";   
 import store from "@/store";
 
 export default {
     name: 'DisplayNodes',
-    components: {SingleNode, draggable},
-    //getting node list from vuex store dynamically for displaying it
     computed: {
         nodeList: {
             get(){
-                return store.getters.getNodeList;
+                return store.getters.getSelectedNodes;
             },
             set(newValue){
-                store.dispatch('reorderNode', newValue);
+                store.dispatch('reorderSelectedNodes', newValue);
             }
 
         }
     },
+    components: {SingleNode, draggable}
 }
 </script>
 

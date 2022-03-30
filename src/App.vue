@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <h1>Design Your Simple Workflow</h1>
-        <search-and-add v-if="loaded" @addNodeToDisplay="addNodeToDisplay"></search-and-add>
+        <search-and-add v-if="loaded"></search-and-add>
         <display-nodes></display-nodes>
     </div>
 </template>
@@ -17,26 +17,15 @@ export default {
     components: {
         SearchAndAdd, DisplayNodes
     },
-    //set up an empty list of nodes
     data(){
         return{
-            nodeList: [],
             loaded: false,
         }
     },
-    //set up all data for all nodes
-    mounted() {
-        store.dispatch('setUpAllNodes', nodeData);
+    async mounted() {
+        await store.dispatch('setUpNodeTypes', nodeData);
         this.loaded = true;
     },
-    //from Search and add child - selected node is emitted and saved to store (vuex)
-    methods: {
-        addNodeToDisplay(query){
-            store.dispatch('addNode', {
-                query
-            })
-        }
-    }
 }
 </script>
 
