@@ -30,6 +30,9 @@ export default createStore({
     },
     addNode({commit}, payload) {
       commit('ADD_NODE', payload);
+    },
+    reorderNode({commit}, payload){
+      commit("REORDER_NODE", payload)
     }
   },
   modules: {

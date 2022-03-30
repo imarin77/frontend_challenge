@@ -7,13 +7,16 @@
                 <cite>{{ short_desc }}</cite>
             </template>
         </v-select>
+        <!--
+            Button for adding a node inside a node list
+         -->
         <button class="btn btn-add" @click="addNodeToScreen">Add Node</button>
     </div>
 </template>
 
 <script>
 import vSelect from 'vue-select';
-import 'vue-select/dist/vue-select.css';
+import 'vue-select/dist/vue-select.css';    //several attributes from an objects can be shown in select list
 import Fuse from 'fuse.js'
 import store from "@/store";
 
@@ -26,9 +29,11 @@ export default {
             query: "",
         }
     },
+    //getting all nodes from the store
     mounted() {
         this.nodeList = store.getters.getAllNodes;
     },
+    //fuse search is used for search inside v-select using Title or Short_desc keys. if needed, other keys can be added
     methods: {
         fuseSearch(options, query) {
             const fuse = new Fuse(this.nodeList, {
@@ -36,6 +41,7 @@ export default {
             });
             return (query.length ? fuse.search(query).map(({ item }) => item) : fuse.list);
         },
+        //method used as on-click action for the button Add node
         addNodeToScreen() {
             this.$emit("addNodeToDisplay", this.query)
             this.query = "";

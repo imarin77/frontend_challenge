@@ -17,16 +17,19 @@ export default {
     components: {
         SearchAndAdd, DisplayNodes
     },
+    //set up an empty list of nodes
     data(){
         return{
             nodeList: [],
             loaded: false,
         }
     },
+    //set up all data for all nodes
     mounted() {
         store.dispatch('setUpAllNodes', nodeData);
         this.loaded = true;
     },
+    //from Search and add child - selected node is emitted and saved to store (vuex)
     methods: {
         addNodeToDisplay(query){
             store.dispatch('addNode', {
