@@ -23,7 +23,7 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-Framework used
+Framework used:
 Vue.js 3
 
 Libraries used:
