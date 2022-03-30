@@ -28,9 +28,9 @@ Vue.js 3
 
 
 ## Libraries used:
-Vuex v4
-Vue Select
-Fuse.js
+Vuex v4 <br />
+Vue Select <br />
+Fuse.js <br />
 vue.draggable.next
 
 
