@@ -27,13 +27,14 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 Vue.js 3
 
 
-### Libraries used:
+## Libraries used:
 Vuex v4
 Vue Select
 Fuse.js
 vue.draggable.next
 
 
+## Components explanation:
 
 JSON generator ( https://json-generator.com/) is used for data used for this challenge. If needed, data can be easily customized to better fit real-life examples. Images are just dummy placeholders in random colors.
 
